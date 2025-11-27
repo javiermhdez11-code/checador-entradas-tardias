@@ -1,0 +1,112 @@
+@startuml
+' =====================
+' Clases del modelo
+' =====================
+class Empleado {
+    - idEmpleado: int
+    - nombre: String
+    - apellidoPaterno: String
+    - apellidoMaterno: String
+    - ruta: String
+    + getIdEmpleado(): int
+    + getNombre(): String
+    + getApellidoPaterno(): String
+    + getApellidoMaterno(): String
+    + getRuta(): String
+}
+
+class Checada {
+    - idChecada: int
+    - empleado: Empleado
+    - fechaEntrada: String
+    - horaEntrada: String
+    + getIdChecada(): int
+    + getEmpleado(): Empleado
+    + getFechaEntrada(): String
+    + getHoraEntrada(): String
+    + getIdEmpleado(): int
+    + getNombre(): String
+    + getApellidoPaterno(): String
+    + getApellidoMaterno(): String
+    + getRuta(): String
+}
+
+class Ruta {
+    - id: int
+    - nombre: String
+    + getId(): int
+    + getNombre(): String
+    + toString(): String
+}
+
+' =====================
+' Clases de servicio
+' =====================
+class EmpleadoService {
+    - rutaService: RutaService
+    + buscarEmpleado(idEmpleado: int): Empleado
+    + agregarEmpleado(empleado: Empleado, ruta: Ruta): boolean
+    + obtenerRutas(): List<Ruta>
+}
+
+class RegistroChecadaService {
+    - empleadoService: EmpleadoService
+    + registrarChecada(empleado: Empleado): Checada
+    + obtenerChecadas(): List<Checada>
+}
+
+class RutaService {
+    + obtenerRutas(): List<Ruta>
+    + agregarRuta(nombre: String): Ruta
+    + agregarRutaSiNoExiste(nombre: String): Ruta
+    + buscarRutaPorId(id: int): Ruta
+}
+
+class Database {
+    + getConnection(): Connection
+}
+
+class ExcelExporter {
+    + exportarChecadas(checadas: List<Checada>, rutaArchivo: String)
+}
+
+' =====================
+' Clases de UI / App
+' =====================
+class Controller {
+    - tabla: TableView<Checada>
+    - txtId: TextField
+    - btnRegistrar: Button
+    - root: VBox
+    - empleadoService: EmpleadoService
+    - checadaService: RegistroChecadaService
+    - rutaService: RutaService
+    + getRoot(): VBox
+    + createIconButton(...): Button
+    + registrarEntrada()
+    + cargarChecadas()
+    + mostrarAlerta(titulo: String, mensaje: String)
+}
+
+class Main {
+    + main(args: String[])
+    + start(stage: Stage)
+}
+
+' =====================
+' Relaciones
+' =====================
+EmpleadoService --> RutaService
+RegistroChecadaService --> EmpleadoService
+Checada --> Empleado
+Empleado --> Ruta
+Controller --> EmpleadoService
+Controller --> RegistroChecadaService
+Controller --> RutaService
+Controller --> ExcelExporter
+Main --> Controller
+Database <-- EmpleadoService
+Database <-- RegistroChecadaService
+Database <-- RutaService
+
+@enduml

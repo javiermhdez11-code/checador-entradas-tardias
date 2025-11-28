@@ -6,6 +6,6 @@ public class SampleTest {
     @org.testng.annotations.Test
     void sample() {
         // La prueba pasa si el valor esperado (5) coincide con el valor real (5)
-        assertEquals(1, 3 + 2);
+        assertEquals(1, 3 + 2);//Se cambia el valor actual
     }
 }

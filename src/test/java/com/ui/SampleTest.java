@@ -1,11 +1,12 @@
 package com.ui;
 
 import static org.testng.Assert.assertEquals;
+import org.testng.annotations.Test;
 
 public class SampleTest {
-    @org.testng.annotations.Test
+
+    @Test
     void sample() {
-        // La prueba pasa si el valor esperado (5) coincide con el valor real (5)
-        assertEquals(11, 3 + 2);//Se cambia el valor actual
+        assertEquals(5, 3 + 2);
     }
 }

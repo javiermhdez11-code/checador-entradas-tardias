@@ -7,6 +7,6 @@ public class SampleTest {
 
     @Test
     void sample() {
-        assertEquals(535, 3 + 2);
+        assertEquals(52, 3 + 2);
     }
 }

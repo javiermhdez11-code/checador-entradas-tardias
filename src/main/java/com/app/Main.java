@@ -38,7 +38,7 @@ public class Main extends Application {
         // Crear escena con el root del controlador y tamaño inicial 900x600
         Scene scene = new Scene(vista.getRoot(), 1000, 500);
         // Usar hoja de estilos externa:
-        //scene.getStylesheets().add(getClass().getResource("/style.css").toExternalForm());
+        scene.getStylesheets().add(getClass().getResource("/style.css").toExternalForm());
         stage.setScene(scene);
 
         // Configurar iconos de la aplicación para diferentes resoluciones

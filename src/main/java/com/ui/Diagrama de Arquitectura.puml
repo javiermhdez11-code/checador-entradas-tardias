@@ -1,0 +1,66 @@
+@startuml
+!define RECTANGLE class
+
+' =======================
+' CAPAS INTERNAS
+' =======================
+package "Capa de Presentación" {
+    RECTANGLE MainApp
+    RECTANGLE Controller
+}
+
+package "Capa de Servicio" {
+    RECTANGLE RegistroChecadaService
+    RECTANGLE EmpleadoService
+    RECTANGLE RutaService
+}
+
+package "Capa de Datos" {
+    RECTANGLE Database
+    RECTANGLE ExcelExporter
+}
+
+' =======================
+' COMPONENTES EXTERNOS
+' =======================
+package "Servicios Externos / CI-CD" {
+    RECTANGLE GitHub
+    RECTANGLE "GitHub Actions / CI" as CI
+    RECTANGLE Trello
+}
+
+package "Almacenamiento" {
+    RECTANGLE "Archivo SQLite" as DBFile
+    RECTANGLE "Exportación a Excel" as ExcelFile
+}
+
+' =======================
+' RELACIONES INTERNAS
+' =======================
+MainApp --> Controller
+Controller --> RegistroChecadaService
+Controller --> EmpleadoService
+Controller --> RutaService
+Controller --> ExcelExporter
+RegistroChecadaService --> EmpleadoService
+EmpleadoService --> RutaService
+RegistroChecadaService --> Database
+EmpleadoService --> Database
+RutaService --> Database
+ExcelExporter --> RegistroChecadaService
+
+' =======================
+' RELACIONES EXTERNAS
+' =======================
+RegistroChecadaService --> DBFile
+EmpleadoService --> DBFile
+RutaService --> DBFile
+ExcelExporter --> ExcelFile
+
+MainApp --> GitHub : "Push/Fetch proyecto"
+Controller --> Trello : "Actualiza tareas / Kanban"
+GitHub --> CI : "Build / Test"
+CI --> MainApp : "Notificaciones de build"
+CI --> RegistroChecadaService : "Ejecuta tests (JUnit/TestNG)"
+
+@enduml

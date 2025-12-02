@@ -80,4 +80,4 @@ El proyecto sigue una arquitectura de capas simple:
 La aplicación genera un único `JAR` ejecutable:
 
 ```bash
-[cite_start]mvn clean package [cite: 53]
+mvn clean package

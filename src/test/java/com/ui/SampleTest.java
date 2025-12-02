@@ -5,6 +5,6 @@ import org.testng.annotations.Test;
 public class SampleTest {
     @Test
     void sample() {
-        assertEquals(10, 3 + 2);
+        assertEquals(5, 3 + 2);
     }
 }

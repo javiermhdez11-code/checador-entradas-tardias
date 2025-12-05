@@ -1,83 +1,85 @@
 # Checador de Entradas Tardías
 
-## 1. Resumen Ejecutivo
+## Resumen Ejecutivo
+El proyecto Checador de Entradas Tardías es una aplicación de escritorio desarrollada en JavaFX que permite registrar entradas tardías del personal que llega mediante transporte. Facilita la generación de reportes, reduce errores y mejora el control de asistencia.
 
-### 1.1 Descripción General
-El proyecto "Checador de Entradas Tardías" es una aplicación de escritorio desarrollada en JavaFX, cuyo objetivo es registrar las entradas tardías del personal que llega mediante transporte de personal. La aplicación permite registrar al empleado, identificar automáticamente su ruta y generar reportes en Excel con filtros por ruta, fecha o empleado.
+## Tabla de Contenidos
+1. Resumen Ejecutivo  
+2. Requerimientos  
+3. Instalación  
+4. Configuración  
+5. Uso del Sistema  
+6. Guía para Administradores  
+7. Contribución  
+8. Roadmap  
+9. Acceso al Producto  
 
-### 1.2 Problema Identificado 
-Actualmente, los trabajadores deben registrar su entrada tardía de forma manual mediante Excel y un escáner de credenciales. Cuando el transporte llega tarde por tráfico o fallas externas, Recursos Humanos (RH) debe revisar manualmente cada registro para justificar retardos. Esto genera:
+## Requerimientos
 
-* Errores humanos.
-* Tiempo excesivo en revisión.
-* Falta de control por ruta.
-* Archivos Excel inconsistentes o duplicados.
+### Software
+- Java 21  
+- JavaFX 21 / 22.0.1  
+- SQLite JDBC 3.45.3.0  
+- Maven 3.8+  
+- Apache POI 5.2.3  
 
-### 1.3 Solución Propuesta
-Crear un sistema de escritorio que:
+### Hardware
+- Windows 10+  
+- 4GB RAM  
+- 300MB libres  
 
-* Registre empleados y su ruta.
-* Registre entradas tardías en tiempo real.
-* Genere reportes automáticos en Excel.
-* Permita a RH filtrar por ruta, fecha o empleado.
-* Elimine procesos manuales.
+## Instalación
 
-### 1.4 Arquitectura 
+### Ambiente de Desarrollo
+```bash
+git clone https://github.com/javiermhdez11-code/checador-entradas-tardias.git
+mvn test
+mvn clean javafx:run
+```
 
-El proyecto sigue una arquitectura de capas simple:
-
-| Capa | Tecnología / Responsabilidad |
-| :--- | :--- |
-| **Capa UI** | JavaFX (sin FXML)  |
-| **Capa de Servicios** | Lógica de negocio  |
-| **Capa de Datos** | SQLite + exportación Excel  |
-| **Capa de Integración** | GitHub + GitHub Actions CI  |
-
-## 2. Requerimientos del Sistema 
-
-### 2.1 Software 
-
-| Elemento | Versión |
-| :--- | :--- |
-| Java | 21  |
-| JavaFX | 21 / 22.0.1  |
-| SQLite JDBC | 3.45.3.0  |
-| Maven | 3.8+  |
-| GitHub Actions | Última versión  |
-| Excel POI | 5.2.3  |
-
-### 2.2 Hardware 
-
-* Windows 10 o superior 
-* 4GB RAM mínimo 
-* 300MB de espacio disponible 
-
-## 3. Instalación 
-
-### 3.1 Instalación del Ambiente de Desarrollo 
-
-1.  Instalar **Java 21**.
-2.  Instalar **Apache Maven**.
-3.  Instalar **IntelliJ IDEA** (opcional, pero recomendado).
-4.  Clonar el proyecto:
-    ```bash
-    git clone [https://github.com/javiermhdez11-code/checador-entradas-tardias.git](https://github.com/javiermhdez11-code/checador-entradas-tardias.git)
-    ```
-
-### 3.2 Ejecución
-
-* **Ejecutar pruebas manualmente:**
-    ```bash
-    mvn test 
-    ```
-* **Ejecutar la aplicación directamente:**
-    ```bash
-    mvn clean javafx:run 
-    ```
-
-### 3.3 Implementación en ambiente local
-
-La aplicación genera un único `JAR` ejecutable:
-
+### JAR Ejecutable
 ```bash
 mvn clean package
+```
+
+## Configuración
+- Base de datos: `checador.db`  
+- Exportación de Excel: carpeta `reportes/`  
+
+## Uso del Sistema
+
+### Registrar Empleado
+1. Ingresar ID empleado
+2. Presionar el botón registrar entrada
+3. Si el empleado no existe, el sistema muestra un formulario de registro
+4. Ingresar datos de empleado
+5. Seleccionar ruta, si la ruta no existe entonces presionar agregar ruta
+6. "Aceptar" y el sistema registro los datos ingresados.
+
+### Registrar Checada
+1. Ingresar ID del empleado  
+2. Presionar el botón registrar entrada  
+3. Confirmar la captura
+
+### Exportar Excel
+1. Seleccionar fecha a exportar reporte de entradas  
+2. Presionar botón exportar
+3. El sistema crea un archivo excel en la carpeta "Descargas" con el contenido de la tabla
+4. Automáticamente la Aplicación abre el archivo excel una vez cuando el archivo se halla creado
+
+## Contribución
+```bash
+git checkout -b feature/nueva-funcionalidad
+git commit -m "Cambio implementado"
+git push origin feature/nueva-funcionalidad
+```
+
+## Roadmap
+- Notificaciones automáticas  
+- Dashboard de indicadores  
+- Integración con QR  
+- Checador biométrico 
+- Gestión de empleados
+- Gestión de rutas
+- Consulta de registros filtrados
+- Imprimir reporte desde la aplicación

@@ -20,7 +20,7 @@ import com.ui.Controller;
  * Extiende {@link javafx.application.Application} y sobreescribe el método start.
  * </p>
  */
-public class Main extends Application {
+public class App extends Application {
 
     /**
      * Método principal de inicio de la aplicación JavaFX.

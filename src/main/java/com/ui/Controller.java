@@ -8,7 +8,6 @@ import com.model.Ruta;
 import com.service.EmpleadoService;
 import com.service.RegistroChecadaService;
 import com.service.RutaService;
-import com.svg.SVGIconUtils;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.geometry.Bounds;

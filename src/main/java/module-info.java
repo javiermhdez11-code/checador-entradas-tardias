@@ -6,6 +6,7 @@ module com.checador {
     requires svg.salamander;
     requires javafx.swing;
     requires batik.transcoder;
+    requires javafx.graphics;
     //requires org.testng;
 
     //opens com.ui to org.testng;
